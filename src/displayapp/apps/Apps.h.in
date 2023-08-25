@@ -32,6 +32,7 @@ namespace Pinetime {
       PassKey,
       QuickSettings,
       Settings,
+      SettingHeartRate,
       SettingWatchFace,
       SettingTimeFormat,
       SettingWeatherFormat,
