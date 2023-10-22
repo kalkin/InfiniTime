@@ -254,7 +254,7 @@ void WatchFaceCasioStyleG7710::Refresh() {
       int dayOfYear = dateTimeController.DayOfYear();
       if (settingsController.GetClockType() == Controllers::Settings::ClockType::H24) {
         // 24h mode: ddmmyyyy, first DOW=Monday;
-        lv_label_set_text_fmt(label_date, "%3d-%2d", day, month);
+        lv_label_set_text_fmt(label_date, "%2d.%2d.%3s", day, month, dateTimeController.DayOfWeekShortToString());
         weekNumberFormat = "%V"; // Replaced by the week number of the year (Monday as the first day of the week) as a decimal number
                                  // [01,53]. If the week containing 1 January has four or more days in the new year, then it is considered
                                  // week 1. Otherwise, it is the last week of the previous year, and the next week is week 1. Both January
