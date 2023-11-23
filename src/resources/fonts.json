@@ -27,11 +27,23 @@
       "sources": [
          {
             "file": "fonts/repetitionscrolling.ttf",
-            "symbols": "0123456789-MONTUEWEDTHUFRISATSUN WK"
+            "symbols": "0123456789-MONTUEWEDTHUFRISATSUN WK.C°"
          }
       ],
       "bpp": 1,
       "size": 40,
+      "format": "bin",
+      "target_path": "/fonts/"
+   },
+   "lv_font_dots_28": {
+      "sources": [
+         {
+            "file": "fonts/repetitionscrolling.ttf",
+            "symbols": ".0123456789-+° "
+         }
+      ],
+      "bpp": 1,
+      "size": 28,
       "format": "bin",
       "target_path": "/fonts/"
    },
@@ -51,7 +63,7 @@
       "sources": [
          {
             "file": "fonts/7segment.woff",
-            "symbols": "0123456789: -"
+            "symbols": "0123456789: -./"
          }
       ],
       "bpp": 1,
