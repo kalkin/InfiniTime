@@ -8,6 +8,7 @@
 #include <displayapp/Controllers.h>
 #include "displayapp/screens/Screen.h"
 #include "components/datetime/DateTimeController.h"
+#include "components/ble/SimpleWeatherService.h"
 #include "components/ble/BleController.h"
 #include "utility/DirtyValue.h"
 #include "displayapp/apps/Apps.h"
@@ -34,6 +35,7 @@ namespace Pinetime {
                                  Controllers::Settings& settingsController,
                                  Controllers::HeartRateController& heartRateController,
                                  Controllers::MotionController& motionController,
+                                 Controllers::SimpleWeatherService& weatherController,
                                  Controllers::FS& filesystem);
         ~WatchFaceCasioStyleG7710() override;
 
@@ -51,6 +53,7 @@ namespace Pinetime {
         Utility::DirtyValue<uint8_t> heartbeat {};
         Utility::DirtyValue<bool> heartbeatRunning {};
         Utility::DirtyValue<bool> notificationState {};
+        Utility::DirtyValue<std::optional<Pinetime::Controllers::SimpleWeatherService::CurrentWeather>> currentWeather {};
         Utility::DirtyValue<std::chrono::time_point<std::chrono::system_clock, std::chrono::days>> currentDate;
 
         lv_point_t line_icons_points[3] {{0, 5}, {117, 5}, {122, 0}};
@@ -69,7 +72,6 @@ namespace Pinetime {
         lv_obj_t* label_date;
         lv_obj_t* line_date;
         lv_obj_t* label_day_of_week;
-        lv_obj_t* label_week_number;
         lv_obj_t* line_day_of_week_number;
         lv_obj_t* label_day_of_year;
         lv_obj_t* line_day_of_year;
@@ -79,6 +81,8 @@ namespace Pinetime {
         lv_obj_t* label_battery_value;
         lv_obj_t* heartbeatIcon;
         lv_obj_t* heartbeatValue;
+        lv_obj_t* weatherIcon;
+        lv_obj_t* temperature;
         lv_obj_t* stepIcon;
         lv_obj_t* stepValue;
         lv_obj_t* notificationIcon;
@@ -93,9 +97,11 @@ namespace Pinetime {
         Controllers::Settings& settingsController;
         Controllers::HeartRateController& heartRateController;
         Controllers::MotionController& motionController;
+        Controllers::SimpleWeatherService& weatherController;
 
         lv_task_t* taskRefresh;
         lv_font_t* font_dot40 = nullptr;
+        lv_font_t* font_dot28 = nullptr;
         lv_font_t* font_segment40 = nullptr;
         lv_font_t* font_segment115 = nullptr;
       };
@@ -114,6 +120,7 @@ namespace Pinetime {
                                                      controllers.settingsController,
                                                      controllers.heartRateController,
                                                      controllers.motionController,
+                                                     *controllers.weatherController,
                                                      controllers.filesystem);
       };
 
